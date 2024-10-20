@@ -1,15 +1,15 @@
-import { defineComponent, inject, computed, resolveComponent, openBlock, createElementBlock, Fragment, mergeProps, createCommentVNode, createElementVNode, withModifiers, createBlock, withCtx, resolveDynamicComponent, renderSlot } from 'vue';
+import { defineComponent, inject, computed, resolveComponent, openBlock, createElementBlock, Fragment, normalizeClass, createCommentVNode, createElementVNode, mergeProps, withModifiers, createBlock, withCtx, resolveDynamicComponent, renderSlot } from 'vue';
 import '../../roving-focus-group/index.mjs';
 import '../../collection/index.mjs';
 import { ElIcon } from '../../icon/index.mjs';
 import '../../../hooks/index.mjs';
 import '../../../utils/index.mjs';
 import '../../../constants/index.mjs';
-import { dropdownItemProps, DROPDOWN_COLLECTION_ITEM_INJECTION_KEY as COLLECTION_ITEM_INJECTION_KEY } from './dropdown.mjs';
+import { dropdownItemProps, DROPDOWN_COLLECTION_ITEM_INJECTION_KEY as COLLECTION_ITEM_INJECTION_KEY } from './dropdown2.mjs';
 import { DROPDOWN_INJECTION_KEY } from './tokens.mjs';
 import _export_sfc from '../../../_virtual/plugin-vue_export-helper.mjs';
 import { useNamespace } from '../../../hooks/use-namespace/index.mjs';
-import { ROVING_FOCUS_ITEM_COLLECTION_INJECTION_KEY as COLLECTION_ITEM_INJECTION_KEY$1 } from '../../roving-focus-group/src/roving-focus-group.mjs';
+import { ROVING_FOCUS_ITEM_COLLECTION_INJECTION_KEY as COLLECTION_ITEM_INJECTION_KEY$1 } from '../../roving-focus-group/src/roving-focus-group2.mjs';
 import { ROVING_FOCUS_GROUP_ITEM_INJECTION_KEY } from '../../roving-focus-group/src/tokens.mjs';
 import { composeRefs } from '../../../utils/vue/refs.mjs';
 import { composeEventHandlers } from '../../../utils/dom/event.mjs';
@@ -70,11 +70,11 @@ const _sfc_main = defineComponent({
 function _sfc_render(_ctx, _cache, $props, $setup, $data, $options) {
   const _component_el_icon = resolveComponent("el-icon");
   return openBlock(), createElementBlock(Fragment, null, [
-    _ctx.divided ? (openBlock(), createElementBlock("li", mergeProps({
+    _ctx.divided ? (openBlock(), createElementBlock("li", {
       key: 0,
       role: "separator",
-      class: _ctx.ns.bem("menu", "item", "divided")
-    }, _ctx.$attrs), null, 16)) : createCommentVNode("v-if", true),
+      class: normalizeClass(_ctx.ns.bem("menu", "item", "divided"))
+    }, null, 2)) : createCommentVNode("v-if", true),
     createElementVNode("li", mergeProps({ ref: _ctx.itemRef }, { ..._ctx.dataset, ..._ctx.$attrs }, {
       "aria-disabled": _ctx.disabled,
       class: [_ctx.ns.be("menu", "item"), _ctx.ns.is("disabled", _ctx.disabled)],

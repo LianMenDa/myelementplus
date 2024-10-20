@@ -5,6 +5,7 @@ import { getRowIdentity } from '../util.mjs';
 import { TABLE_INJECTION_KEY } from '../tokens.mjs';
 import useEvents from './events-helper.mjs';
 import useStyles from './styles-helper.mjs';
+import TdWrapper from './td-wrapper.mjs';
 import { useNamespace } from '../../../../hooks/use-namespace/index.mjs';
 
 function useRender(props) {
@@ -93,11 +94,10 @@ function useRender(props) {
       }
       const baseKey = `${getKeyOfRow(row, $index)},${cellIndex}`;
       const patchKey = columnData.columnKey || columnData.rawColumnKey || "";
-      const tdChildren = cellChildren(cellIndex, column, data);
       const mergedTooltipOptions = column.showOverflowTooltip && merge({
         effect: tooltipEffect
       }, tooltipOptions, column.showOverflowTooltip);
-      return h("td", {
+      return h(TdWrapper, {
         style: getCellStyle($index, cellIndex, row, column),
         class: getCellClass($index, cellIndex, row, column, colspan - 1),
         key: `${patchKey}${baseKey}`,
@@ -105,7 +105,9 @@ function useRender(props) {
         colspan,
         onMouseenter: ($event) => handleCellMouseEnter($event, row, mergedTooltipOptions),
         onMouseleave: handleCellMouseLeave
-      }, [tdChildren]);
+      }, {
+        default: () => cellChildren(cellIndex, column, data)
+      });
     }));
   };
   const cellChildren = (cellIndex, column, data) => {

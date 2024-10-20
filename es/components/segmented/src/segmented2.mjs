@@ -1,4 +1,4 @@
-import { defineComponent, ref, reactive, computed, watch, openBlock, createElementBlock, unref, normalizeClass, createElementVNode, normalizeStyle, Fragment, renderList, renderSlot, createTextVNode, toDisplayString } from 'vue';
+import { defineComponent, ref, reactive, computed, watch, openBlock, createElementBlock, unref, normalizeClass, createElementVNode, normalizeStyle, Fragment, renderList, renderSlot, createTextVNode, toDisplayString, createCommentVNode } from 'vue';
 import { useActiveElement, useResizeObserver } from '@vueuse/core';
 import '../../../hooks/index.mjs';
 import '../../form/index.mjs';
@@ -116,7 +116,8 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
       flush: "post"
     });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("div", {
+      return _ctx.options.length ? (openBlock(), createElementBlock("div", {
+        key: 0,
         id: unref(inputId),
         ref_key: "segmentedRef",
         ref: segmentedRef,
@@ -155,7 +156,7 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
             ], 2);
           }), 128))
         ], 2)
-      ], 10, ["id", "aria-label", "aria-labelledby"]);
+      ], 10, ["id", "aria-label", "aria-labelledby"])) : createCommentVNode("v-if", true);
     };
   }
 });
